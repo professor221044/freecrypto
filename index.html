@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Faucet - Free USDT Every 5 Minutes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            font-size: 28px;
+            color: #00c9ff;
+        }
+        
+        .logo h1 {
+            font-size: 22px;
+            background: linear-gradient(to right, #00c9ff, #92fe9d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700;
+        }
+        
+        .balance-box {
+            background: linear-gradient(135deg, #00c9ff, #92fe9d);
+            padding: 12px 25px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .balance-box p {
+            font-size: 14px;
+            color: rgba(0, 0, 0, 0.7);
+            font-weight: 600;
+        }
+        
+        .balance-box h2 {
+            font-size: 24px;
+            color: #000;
+            font-weight: 800;
+        }
+        
+        .ad-container {
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, #4b6cb7, #182848);
+            border-radius: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .ad-label {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.5);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 10px;
+            z-index: 2;
+        }
+        
+        .ad-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 0 20px;
+        }
+        
+        .ad-content i {
+            font-size: 36px;
+            color: #ffcc00;
+        }
+        
+        .ad-text {
+            max-width: 70%;
+        }
+        
+        .ad-text h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #ffcc00;
+        }
+        
+        .ad-text p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        .main-content {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 20px;
+            margin: 20px 0;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .faucet-title {
+            font-size: 36px;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ffcc00, #ff7e5f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+        }
+        
+        .faucet-desc {
+            font-size: 18px;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+        
+        .highlight {
+            color: #00c9ff;
+            font-weight: 700;
+        }
+        
+        .claim-container {
+            margin: 30px 0;
+        }
+        
+        .timer-box {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .timer-box i {
+            color: #ff7e5f;
+            font-size: 24px;
+        }
+        
+        #timer {
+            font-weight: 700;
+            color: #00c9ff;
+            font-size: 22px;
+        }
+        
+        .claim-btn {
+            background: linear-gradient(to right, #ffcc00, #ff7e5f);
+            color: #000;
+            border: none;
+            padding: 18px 50px;
+            font-size: 20px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 204, 0, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .claim-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 204, 0, 0.4);
+        }
+        
+        .claim-btn:active {
+            transform: translateY(1px);
+        }
+        
+        .claim-btn:disabled {
+            background: linear-gradient(to right, #555, #777);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .withdraw-btn {
+            background: linear-gradient(to right, #00c9ff, #92fe9d);
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 201, 255, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .withdraw-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 201, 255, 0.4);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            width: 90%;
+            max-width: 400px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+        
+        .modal-header {
+            padding: 20px;
+            position: relative;
+        }
+        
+        .modal-body {
+            padding: 25px;
+        }
+        
+        .modal-body h2 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #00c9ff;
+        }
+        
+        .modal-body p {
+            font-size: 18px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+        }
+        
+        .reward-amount {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffcc00;
+            margin: 15px 0;
+        }
+        
+        .modal-footer {
+            padding: 20px;
+        }
+        
+        .done-btn {
+            background: linear-gradient(to right, #00c9ff, #92fe9d);
+            color: #000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .warning {
+            color: #ff7e5f;
+            font-weight: 700;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .transaction-history {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        
+        .history-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #00c9ff;
+            text-align: center;
+        }
+        
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        
+        .history-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .history-amount {
+            color: #ffcc00;
+            font-weight: 600;
+        }
+        
+        .history-date {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .crypto-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .crypto-coin {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.1;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            from { transform: translateY(100vh) rotate(0deg); }
+            to { transform: translateY(-100px) rotate(360deg); }
+        }
+        
+        .withdraw-page {
+            display: none;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            margin-top: 30px;
+        }
+        
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .withdraw-form {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #00c9ff;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.3);
+            color: white;
+            font-size: 16px;
+        }
+        
+        .min-amount {
+            font-size: 14px;
+            color: #ffcc00;
+            margin-top: 5px;
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, #00c9ff, #92fe9d);
+            color: #000;
+            border: none;
+            padding: 16px 40px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .faucet-title {
+                font-size: 28px;
+            }
+            
+            .faucet-desc {
+                font-size: 16px;
+            }
+            
+            .claim-btn {
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="crypto-animation" id="cryptoAnimation"></div>
+    
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-coins"></i>
+                <h1>CRYPTO FAUCET</h1>
+            </div>
+            <div class="balance-box">
+                <p>YOUR BALANCE</p>
+                <h2 id="balance">0.00 USDT</h2>
+            </div>
+        </header>
+        
+        <div class="ad-container">
+            <div class="ad-label">ADVERTISEMENT</div>
+            <div class="ad-content">
+                <i class="fas fa-chart-line"></i>
+                <div class="ad-text">
+                    <h3>Trade with Confidence</h3>
+                    <p>Join the leading crypto exchange with over 20 million users</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="main-content">
+            <h1 class="faucet-title">CRYPTO FAUCET</h1>
+            <p class="faucet-desc">Calm faucet every <span class="highlight">5 minutes</span> and win <span class="highlight">Free Crypto</span>. 
+            Just click the claim button, watch a short ad, and get rewarded with <span class="highlight">USDT</span>!</p>
+            
+            <div class="ad-container">
+                <div class="ad-label">ADVERTISEMENT</div>
+                <div class="ad-content">
+                    <i class="fas fa-wallet"></i>
+                    <div class="ad-text">
+                        <h3>Crypto Wallet</h3>
+                        <p>Secure your assets with the most trusted wallet solution</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="claim-container">
+                <div class="timer-box">
+                    <i class="fas fa-clock"></i>
+                    <span>Next claim in:</span>
+                    <span id="timer">05:00</span>
+                </div>
+                <button class="claim-btn pulse" id="claimBtn">
+                    <i class="fas fa-gift"></i>
+                    CLAIM NOW
+                </button>
+            </div>
+            
+            <div class="ad-container">
+                <div class="ad-label">ADVERTISEMENT</div>
+                <div class="ad-content">
+                    <i class="fas fa-shield-alt"></i>
+                    <div class="ad-text">
+                        <h3>Secure Transactions</h3>
+                        <p>Military-grade security for all your crypto transactions</p>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="withdraw-btn" id="withdrawBtn">
+                <i class="fas fa-money-bill-wave"></i>
+                WITHDRAW FUNDS
+            </button>
+            
+            <div class="transaction-history">
+                <h3 class="history-title">TRANSACTION HISTORY</h3>
+                <div class="history-list" id="historyList">
+                    <!-- Transactions will appear here -->
+                </div>
+            </div>
+        </div>
+        
+        <div class="withdraw-page" id="withdrawPage">
+            <button class="back-btn" id="backBtn">
+                <i class="fas fa-arrow-left"></i>
+                BACK TO FAUCET
+            </button>
+            
+            <div class="ad-container">
+                <div class="ad-label">ADVERTISEMENT</div>
+                <div class="ad-content">
+                    <i class="fas fa-exchange-alt"></i>
+                    <div class="ad-text">
+                        <h3>Fast Exchange</h3>
+                        <p>Swap your crypto instantly with the best rates</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="withdraw-form">
+                <h2>WITHDRAW FUNDS</h2>
+                <p class="min-amount">Minimum withdrawal: 5.00 USDT</p>
+                
+                <div class="form-group">
+                    <label for="amount">Amount (USDT)</label>
+                    <input type="number" id="amount" placeholder="Enter amount" min="5" step="0.01">
+                </div>
+                
+                <div class="form-group">
+                    <label for="wallet">Wallet Address</label>
+                    <input type="text" id="wallet" placeholder="Enter your USDT wallet address">
+                </div>
+                
+                <button class="submit-btn" id="submitWithdraw">
+                    <i class="fas fa-paper-plane"></i>
+                    WITHDRAW
+                </button>
+            </div>
+            
+            <div class="ad-container">
+                <div class="ad-label">ADVERTISEMENT</div>
+                <div class="ad-content">
+                    <i class="fas fa-chart-pie"></i>
+                    <div class="ad-text">
+                        <h3>Market Analysis</h3>
+                        <p>Get real-time insights and market predictions</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="transaction-history">
+                <h3 class="history-title">WITHDRAWAL HISTORY</h3>
+                <div class="history-list" id="withdrawHistory">
+                    <!-- Withdrawal history will appear here -->
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Crypto Faucet. All rights reserved. This is a demo project for educational purposes only.</p>
+        </footer>
+    </div>
+    
+    <!-- Reward Popup -->
+    <div class="modal" id="rewardModal">
+        <div class="modal-content">
+            <div class="ad-container">
+                <div class="ad-label">ADVERTISEMENT</div>
+                <div class="ad-content">
+                    <i class="fas fa-gem"></i>
+                    <div class="ad-text">
+                        <h3>Premium Features</h3>
+                        <p>Upgrade to unlock premium features and higher rewards</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-body">
+                <h2>CONGRATULATIONS!</h2>
+                <p>You've successfully claimed your reward</p>
+                <div class="reward-amount">+0.01 USDT</div>
+                <p>has been added to your balance</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="done-btn" id="doneBtn">
+                    DONE
+                </button>
+            </div>
+            
+            <div class="ad-container">
+                <div class="ad-label">ADVERTISEMENT</div>
+                <div class="ad-content">
+                    <i class="fas fa-mobile-alt"></i>
+                    <div class="ad-text">
+                        <h3>Mobile App</h3>
+                        <p>Trade crypto anywhere with our mobile application</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Warning Popup -->
+    <div class="modal" id="warningModal">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h2 class="warning">WARNING!</h2>
+                              <p>You must stay at least <span class="highlight">15 seconds</span> to get your reward.</p>
+                <p>No reward has been credited to your account.</p>
+                <p>Please try again and watch the full ad to receive your USDT.</p>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="done-btn" id="closeWarningBtn">
+                    CLOSE
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize variables
+        let balance = 0;
+        let lastClaimTime = 0;
+        const claimCooldown = 5 * 60 * 1000; // 5 minutes in milliseconds
+        const requiredAdTime = 15000; // 15 seconds
+        let adTab = null;
+        let adTimer = null;
+        let adStartTime = 0;
+        
+        // DOM elements
+        const balanceEl = document.getElementById('balance');
+        const timerEl = document.getElementById('timer');
+        const claimBtn = document.getElementById('claimBtn');
+        const rewardModal = document.getElementById('rewardModal');
+        const warningModal = document.getElementById('warningModal');
+        const doneBtn = document.getElementById('doneBtn');
+        const closeWarningBtn = document.getElementById('closeWarningBtn');
+        const withdrawBtn = document.getElementById('withdrawBtn');
+        const withdrawPage = document.getElementById('withdrawPage');
+        const backBtn = document.getElementById('backBtn');
+        const submitWithdraw = document.getElementById('submitWithdraw');
+        const historyList = document.getElementById('historyList');
+        const withdrawHistory = document.getElementById('withdrawHistory');
+        const cryptoAnimation = document.getElementById('cryptoAnimation');
+          // Initialize the page
+        function init() {
+            loadFromStorage();
+            updateBalanceDisplay();
+            updateTimer();
+            updateHistory();
+            createCryptoAnimation();
+            
+            // Set up event listeners
+            claimBtn.addEventListener('click', startClaimProcess);
+            doneBtn.addEventListener('click', closeRewardModal);
+            closeWarningBtn.addEventListener('click', closeWarningModal);
+            withdrawBtn.addEventListener('click', showWithdrawPage);
+            backBtn.addEventListener('click', hideWithdrawPage);
+            submitWithdraw.addEventListener('click', processWithdrawal);
+            
+            // Set up the timer interval
+            setInterval(updateTimer, 1000);
+        }
+        
+        // Load data from localStorage
+        function loadFromStorage() {
+            const savedBalance = localStorage.getItem('faucetBalance');
+            const savedTime = localStorage.getItem('lastClaimTime');
+            const savedHistory = localStorage.getItem('claimHistory');
+            const savedWithdrawals = localStorage.getItem('withdrawalHistory');
+            
+            if (savedBalance) balance = parseFloat(savedBalance);
+            if (savedTime) lastClaimTime = parseInt(savedTime);
+            if (savedHistory) {
+                const history = JSON.parse(savedHistory);
+                updateHistoryDisplay(history, historyList);
+            }
+            if (savedWithdrawals) {
+                const withdrawals = JSON.parse(savedWithdrawals);
+                updateHistoryDisplay(withdrawals, withdrawHistory);
+            }
+        }
+        
+        // Save data to localStorage
+        function saveToStorage() {
+            localStorage.setItem('faucetBalance', balance.toString());
+            localStorage.setItem('lastClaimTime', lastClaimTime.toString());
+        }
+        
+        // Update balance display
+        function updateBalanceDisplay() {
+            balanceEl.textContent = balance.toFixed(2) + ' USDT';
+        }
+        
+        // Update timer display
+        function updateTimer() {
+            const currentTime = Date.now();
+            const timeSinceLastClaim = currentTime - lastClaimTime;
+            const timeLeft = Math.max(0, claimCooldown - timeSinceLastClaim);
+            
+            if (timeLeft > 0) {
+                const minutes = Math.floor(timeLeft / 60000);
+                const seconds = Math.floor((timeLeft % 60000) / 1000);
+                timerEl.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                claimBtn.disabled = true;
+                claimBtn.classList.remove('pulse');
+            } else {
+                timerEl.textContent = '00:00';
+                claimBtn.disabled = false;
+                claimBtn.classList.add('pulse');
+            }
+        }
+               
+        // Start the claim process
+        function startClaimProcess() {
+            // Open ad in new tab
+            adTab = window.open('', '_blank');
+            adTab.document.write(`
+                <html>
+                <head>
+                    <title>Advertisement</title>
+                    <style>
+                        body {
+                            background: #1a1a2e;
+                            color: white;
+                            font-family: Arial, sans-serif;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100vh;
+                            margin: 0;
+                            text-align: center;
+                        }
+                        .ad-content {
+                            padding: 20px;
+                        }
+                        h1 {
+                            color: #00c9ff;
+                        }
+                        .timer {
+                            font-size: 24px;
+                            margin: 20px 0;
+                            color: #ffcc00;
+                        }
+                        .message {
+                            margin-top: 20px;
+                            font-size: 18px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="ad-content">
+                        <h1>SPECIAL OFFER</h1>
+                        <p>Thanks for supporting our sponsors!</p>
+                        <div class="timer">Please wait: <span id="adTimer">15</span> seconds</div>
+                        <p class="message">You will be rewarded after watching this ad</p>
+                    </div>
+                    <script>
+                        let seconds = 15;
+                        const timerEl = document.getElementById('adTimer');
+                        const timer = setInterval(() => {
+                            seconds--;
+                            timerEl.textContent = seconds;
+                            if (seconds <= 0) {
+                                clearInterval(timer);
+                                // Notify main window that ad was completed
+                                window.opener.postMessage('adCompleted', '*');
+                            }
+                        }, 1000);
+                    </script>
+                </body>
+                </html>
+            `);
+            
+            // Record ad start time
+            adStartTime = Date.now();
+            
+            // Disable claim button
+            claimBtn.disabled = true;
+            
+            // Listen for ad completion message
+            window.addEventListener('message', handleAdMessage);
+        }
+        
+        // Handle message from ad tab
+        function handleAdMessage(event) {
+            if (event.data === 'adCompleted') {
+                // Successful ad view
+                const adViewTime = Date.now() - adStartTime;
+                
+                if (adViewTime >= requiredAdTime) {
+                    // Reward the user
+                    balance += 0.01;
+                    lastClaimTime = Date.now();
+                    saveToStorage();
+                    updateBalanceDisplay();
+                    updateTimer();
+                    
+                    // Add to history
+                    addToHistory({
+                        type: 'reward',
+                        amount: 0.01,
+                        date: new Date()
+                    });
+                    
+                    // Show reward popup
+                    rewardModal.style.display = 'flex';
+                } else {
+                    // Show warning
+                    warningModal.style.display = 'flex';
+                }
+                
+                // Close the ad tab
+                if (adTab && !adTab.closed) {
+                    adTab.close();
+                }
+                
+                // Remove event listener
+                window.removeEventListener('message', handleAdMessage);
+            }
+        }
+        
+        // Close reward modal
+        function closeRewardModal() {
+            rewardModal.style.display = 'none';
+            
+            // Open a new ad tab
+            const newAdTab = window.open('', '_blank');
+            newAdTab.document.write(`
+                <html>
+                <head>
+                    <title>Special Offer</title>
+                    <style>
+                        body {
+                            background: #1a1a2e;
+                            color: white;
+                            font-family: Arial, sans-serif;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 100vh;
+                            margin: 0;
+                            text-align: center;
+                        }
+                        .ad-content {
+                            padding: 20px;
+                        }
+                        h1 {
+                            color: #00c9ff;
+                        }
+                        p {
+                            margin: 15px 0;
+                        }
+                </style>
+                </head>
+                <body>
+                    <div class="ad-content">
+                        <h1>THANK YOU!</h1>
+                        <p>Check out our latest promotion for exclusive rewards.</p>
+                        <p>Limited time offer - don't miss out!</p>
+                    </div>
+                </body>
+                </html>
+            `);
+        }
+        
+        // Close warning modal
+        function closeWarningModal() {
+            warningModal.style.display = 'none';
+            claimBtn.disabled = false;
+        }
+        
+        // Show withdraw page
+        function showWithdrawPage() {
+            withdrawPage.style.display = 'block';
+        }
+        
+        // Hide withdraw page
+        function hideWithdrawPage() {
+            withdrawPage.style.display = 'none';
+        }
+        
+        // Process withdrawal request
+        function processWithdrawal() {
+            const amountInput = document.getElementById('amount');
+            const walletInput = document.getElementById('wallet');
+            const amount = parseFloat(amountInput.value);
+            const wallet = walletInput.value.trim();
+            
+            // Validate inputs
+            if (isNaN(amount) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            if (amount < 5) {
+                alert('Minimum withdrawal is 5.00 USDT');
+                return;
+            }
+            
+            if (amount > balance) {
+                alert('Insufficient balance');
+                return;
+            }
+            
+            if (wallet.length < 10) {
+                alert('Please enter a valid wallet address');
+                return;
+            }
+            
+            // Process withdrawal
+            balance -= amount;
+            saveToStorage();
+            updateBalanceDisplay();
+            
+            // Add to withdrawal history
+            addToHistory({
+                type: 'withdrawal',
+                amount: amount,
+                wallet: wallet,
+                date: new Date(),
+                status: 'Pending'
+            });
+          
+            // Reset form
+            amountInput.value = '';
+            walletInput.value = '';
+            
+            alert(`Withdrawal request for ${amount.toFixed(2)} USDT submitted successfully!`);
+        }
+        
+        // Add transaction to history
+        function addToHistory(transaction) {
+            let history = [];
+            const savedHistory = localStorage.getItem(
+                transaction.type === 'reward' ? 'claimHistory' : 'withdrawalHistory'
+            );
+            
+            if (savedHistory) {
+                history = JSON.parse(savedHistory);
+            }
+            
+            history.unshift(transaction);
+            
+            localStorage.setItem(
+                transaction.type === 'reward' ? 'claimHistory' : 'withdrawalHistory', 
+                JSON.stringify(history)
+            );
+            
+            updateHistory();
+        }
+        
+        // Update history display
+        function updateHistory() {
+            // Update claim history
+            const savedClaims = localStorage.getItem('claimHistory');
+            if (savedClaims) {
+                const claims = JSON.parse(savedClaims);
+                updateHistoryDisplay(claims, historyList);
+            }
+            
+            // Update withdrawal history
+            const savedWithdrawals = localStorage.getItem('withdrawalHistory');
+            if (savedWithdrawals) {
+                const withdrawals = JSON.parse(savedWithdrawals);
+                updateHistoryDisplay(withdrawals, withdrawHistory);
+            }
+        }
+        
+        // Update history display
+        function updateHistoryDisplay(transactions, container) {
+            container.innerHTML = '';
+            
+            if (transactions.length === 0) {
+                container.innerHTML = '<p class="no-history">No transactions yet</p>';
+                return;
+            }
+            transactions.slice(0, 5).forEach(transaction => {
+                const item = document.createElement('div');
+                item.className = 'history-item';
+                
+                if (transaction.type === 'reward') {
+                    const date = new Date(transaction.date).toLocaleString();
+                    item.innerHTML = `
+                        <div>
+                            <span>Reward Claim</span>
+                            <div class="history-date">${date}</div>
+                        </div>
+                        <div class="history-amount">+${transaction.amount.toFixed(2)} USDT</div>
+                    `;
+                } else {
+                    const date = new Date(transaction.date).toLocaleDateString();
+                    item.innerHTML = `
+                        <div>
+                            <span>Withdrawal to ${transaction.wallet.substring(0, 6)}...${transaction.wallet.substring(transaction.wallet.length - 4)}</span>
+                            <div class="history-date">${date} - ${transaction.status}</div>
+                        </div>
+                        <div class="history-amount">-${transaction.amount.toFixed(2)} USDT</div>
+                    `;
+                }
+                
+                container.appendChild(item);
+            });
+        }
+        
+        // Create floating crypto animation
+        function createCryptoAnimation() {
+            const coins = ['₿', 'Ξ', '₿', '◆', '❖', '✦', '♦', '♢', '★', '✪'];
+            
+            for (let i = 0; i < 20; i++) {
+                const coin = document.createElement('div');
+                coin.className = 'crypto-coin';
+                coin.textContent = coins[Math.floor(Math.random() * coins.length)];
+                coin.style.left = `${Math.random() * 100}%`;
+                coin.style.animationDelay = `${Math.random() * 15}s`;
+                coin.style.fontSize = `${Math.random() * 20 + 15}px`;
+                coin.style.opacity = Math.random() * 0.2 + 0.05;
+                
+                cryptoAnimation.appendChild(coin);
+            }
+        }
+        
+        // Initialize the application
+        window.onload = init;
+    </script>
+</body>
+</html>
+            
